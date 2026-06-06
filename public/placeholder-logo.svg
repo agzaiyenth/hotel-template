@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="215" height="48" viewBox="0 0 215 48" fill="none">
+  <rect width="48" height="48" rx="10" fill="#112426"/>
+  <path d="M10 35V17L17 29L24 17L31 29L38 17V35" stroke="#F3D7A4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M12 37H36" stroke="#F7F2EA" stroke-width="3" stroke-linecap="round"/>
+  <text x="62" y="29" fill="#112426" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Marina Hotel</text>
+  <text x="63" y="42" fill="#4F676A" font-family="Arial, Helvetica, sans-serif" font-size="9" letter-spacing="2">LUXURY STAYS</text>
+</svg>
