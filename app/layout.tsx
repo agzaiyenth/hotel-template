@@ -20,9 +20,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Marina Luxury Hotel - Experience Unparalleled Hospitality',
-  description: 'Discover luxury redefined at Marina. World-class accommodations, fine dining, spa services, and exclusive experiences. Book your dream stay today.',
-  applicationName: 'Marina Luxury Hotel',
+  title: 'Al Marina Holding - Strategic Investments for the UAE',
+  description: 'Al Marina Holding is an integrated asset owner and investment manager driving long-term economic growth in Abu Dhabi through strategic investments in real estate, hospitality, retail, construction, and transportation.',
+  applicationName: 'Al Marina Holding',
   icons: {
     icon: '/icon.svg',
     apple: '/apple-icon.png',

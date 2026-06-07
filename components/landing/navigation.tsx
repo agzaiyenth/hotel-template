@@ -5,11 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { name: "Rooms",         href: "#features"      },
-  { name: "Amenities",     href: "#how-it-works"  },
-  { name: "Dining",        href: "#infra"          },
-  { name: "Experiences",   href: "#integrations"  },
-  { name: "About",         href: "#security"      },
+  { name: "Investments",   href: "/divisions/investments"  },
+  { name: "Hospitality",   href: "/divisions/hospitality"  },
+  { name: "Retail",        href: "/divisions/retail"       },
+  { name: "Construction",  href: "/divisions/construction" },
+  { name: "About Us",      href: "#intro"                  },
+  { name: "Contact",       href: "/contact"                },
 ];
 
 export function Navigation() {
@@ -65,14 +66,14 @@ export function Navigation() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <a href="#" className={`transition-all duration-500 ${isScrolled ? "text-xs text-foreground/70 hover:text-foreground" : "text-sm text-white/70 hover:text-white"}`}>
-              My Account
+            <a href="/contact" className={`transition-all duration-500 ${isScrolled ? "text-xs text-foreground/70 hover:text-foreground" : "text-sm text-white/70 hover:text-white"}`}>
+              العربية
             </a>
             <Button
               size="sm"
               className={`rounded-full transition-all duration-500 ${isScrolled ? "bg-foreground hover:bg-foreground/90 text-background px-4 h-8 text-xs" : "bg-white hover:bg-white/90 text-black px-6"}`}
             >
-              Book Now
+              Invest Now
             </Button>
           </div>
 
@@ -134,13 +135,13 @@ export function Navigation() {
               className="flex-1 rounded-full h-14 text-base"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              My Account
+              العربية
             </Button>
             <Button 
               className="flex-1 bg-foreground text-background rounded-full h-14 text-base"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Book Now
+              Invest Now
             </Button>
           </div>
         </div>
