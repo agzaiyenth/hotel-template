@@ -94,6 +94,24 @@
 }
 
 @layer utilities {
+  /* RTL Support */
+  html.rtl {
+    direction: rtl;
+    text-align: right;
+  }
+
+  html.rtl .ltr-only {
+    display: none;
+  }
+
+  html:not(.rtl) .rtl-only {
+    display: none;
+  }
+
+  html.rtl {
+    --tw-translate-x: initial;
+  }
+
   .font-display {
     font-family: var(--font-display);
   }

@@ -4,20 +4,25 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/app/providers";
+import { translations } from "@/lib/translations";
 
-const navLinks = [
-  { name: "Investments",   href: "/divisions/investments"  },
-  { name: "Hospitality",   href: "/divisions/hospitality"  },
-  { name: "Retail",        href: "/divisions/retail"       },
-  { name: "Construction",  href: "/divisions/construction" },
-  { name: "About Us",      href: "#intro"                  },
-  { name: "Contact",       href: "/contact"                },
-];
+function getNavLinks(language: 'en' | 'ar') {
+  const t = translations[language];
+  return [
+    { name: t.nav.investments,   href: "/divisions/investments"  },
+    { name: t.nav.hospitality,   href: "/divisions/hospitality"  },
+    { name: t.nav.retail,        href: "/divisions/retail"       },
+    { name: t.nav.construction,  href: "/divisions/construction" },
+    { name: t.nav.about,         href: "#intro"                  },
+    { name: t.nav.contact,       href: "/contact"                },
+  ];
+}
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
+  const navLinks = getNavLinks(language);
 
   useEffect(() => {
     const handleScroll = () => {

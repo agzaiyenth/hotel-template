@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useLanguage } from "@/app/providers";
+import { translations } from "@/lib/translations";
 
 export function HoldingAboutSection() {
   const [isVisible, setIsVisible] = useState(false);
+  const { language } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -51,30 +54,34 @@ export function HoldingAboutSection() {
             >
               <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
                 <span className="w-8 h-px bg-foreground/30" />
-                About Al Marina
+                {translations[language].about.title}
               </span>
 
               <h2 className="text-5xl md:text-6xl font-display leading-tight mb-8">
-                Shaping the future of the UAE
+                {language === 'ar' ? translations[language].about.title : 'Shaping the future of the UAE'}
               </h2>
 
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Al Marina Holding is an integrated asset owner and investment manager based in Abu Dhabi, United Arab Emirates. The company focuses on spearheading long-term economic growth within the region by managing a diversified portfolio of robust businesses.
+                {language === 'ar' 
+                  ? translations[language].about.title 
+                  : "Al Marina Holding is an integrated asset owner and investment manager based in Abu Dhabi, United Arab Emirates. The company focuses on spearheading long-term economic growth within the region by managing a diversified portfolio of robust businesses."}
               </p>
 
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                Our primary objective is to contribute to the UAE&apos;s prosperity by enhancing the urban fabric of the capital city through strategic investments in key growth sectors including real estate, hospitality, retail, construction, and transportation.
+                {language === 'ar'
+                  ? translations[language].about.title
+                  : "Our primary objective is to contribute to the UAE's prosperity by enhancing the urban fabric of the capital city through strategic investments in key growth sectors including real estate, hospitality, retail, construction, and transportation."}
               </p>
 
               <div className="grid sm:grid-cols-2 gap-8 pt-8 border-t border-foreground/10">
                 {[
                   {
-                    title: "Vision",
-                    description: "To be the leading integrated investment platform driving sustainable economic growth in the UAE"
+                    title: translations[language].about.vision,
+                    description: translations[language].about.visionText
                   },
                   {
-                    title: "Mission",
-                    description: "Creating long-term value through strategic investments and operational excellence across key sectors"
+                    title: translations[language].about.mission,
+                    description: translations[language].about.missionText
                   }
                 ].map((item) => (
                   <div key={item.title}>

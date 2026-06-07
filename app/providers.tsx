@@ -39,6 +39,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     }
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.style.direction = lang === 'ar' ? 'rtl' : 'ltr';
   };
 
   // Return default value immediately for SSR, then hydrate on client

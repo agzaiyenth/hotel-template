@@ -2,9 +2,12 @@
 
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
+import { useLanguage } from "@/app/providers";
+import { translations } from "@/lib/translations";
 
 export function HoldingCtaSection() {
   const [isVisible, setIsVisible] = useState(false);
+  const { language } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -36,11 +39,11 @@ export function HoldingCtaSection() {
             }`}
           >
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-display leading-tight mb-6">
-              Ready to grow with us?
+              {translations[language].cta.title}
             </h2>
 
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-12">
-              Explore investment opportunities and partnership possibilities with Al Marina Holding.
+              {translations[language].cta.description}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -48,14 +51,14 @@ export function HoldingCtaSection() {
                 size="lg"
                 className="rounded-full px-8 h-12 text-base bg-foreground text-background hover:bg-foreground/90"
               >
-                Get in Touch
+                {translations[language].cta.button}
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="rounded-full px-8 h-12 text-base"
               >
-                Learn More
+                {language === 'ar' ? 'اعرف المزيد' : 'Learn More'}
               </Button>
             </div>
           </div>

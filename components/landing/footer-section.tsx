@@ -2,23 +2,27 @@
 
 import { ArrowUpRight, Linkedin, Instagram, Facebook, Twitter } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { useLanguage } from "@/app/providers";
+import { translations } from "@/lib/translations";
 
-const footerLinks = {
-  Company: [
-    { name: "About Us", href: "#intro" },
-    { name: "Contact", href: "/contact" },
-  ],
-  Divisions: [
-    { name: "Investments", href: "/divisions/investments" },
-    { name: "Hospitality", href: "/divisions/hospitality" },
-    { name: "Retail", href: "/divisions/retail" },
-    { name: "Construction", href: "/divisions/construction" },
-  ],
-  Legal: [
-    { name: "Privacy Policy", href: "#" },
-    { name: "Terms & Conditions", href: "#" },
-  ],
-};
+function getFooterLinks(language: 'en' | 'ar') {
+  return {
+    [translations[language].footer.company]: [
+      { name: translations[language].about.title, href: "#intro" },
+      { name: translations[language].nav.contact, href: "/contact" },
+    ],
+    [translations[language].footer.divisions]: [
+      { name: translations[language].nav.investments, href: "/divisions/investments" },
+      { name: translations[language].nav.hospitality, href: "/divisions/hospitality" },
+      { name: translations[language].nav.retail, href: "/divisions/retail" },
+      { name: translations[language].nav.construction, href: "/divisions/construction" },
+    ],
+    [translations[language].footer.legal]: [
+      { name: translations[language].footer.privacy, href: "#" },
+      { name: translations[language].footer.terms, href: "#" },
+    ],
+  };
+}
 
 const socialLinks = [
   { name: "LinkedIn", href: "#", icon: Linkedin },
@@ -84,6 +88,9 @@ function AnimatedWaveCanvas() {
 }
 
 export function FooterSection() {
+  const { language } = useLanguage();
+  const footerLinks = getFooterLinks(language);
+  
   return (
     <footer className="relative bg-black">
       {/* Panoramic banner image */}
@@ -111,7 +118,7 @@ export function FooterSection() {
               </a>
 
               <p className="text-white/50 leading-relaxed mb-8 max-w-xs text-sm">
-                Driving strategic growth through diversified investments in real estate, hospitality, retail, construction, and transportation.
+                {translations[language].footer.description}
               </p>
 
               {/* Social Links */}
@@ -158,7 +165,7 @@ export function FooterSection() {
         {/* Bottom Bar */}
         <div className="py-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-white/30">
-            &copy; 2026 Al Marina Holding. All rights reserved.
+            {translations[language].footer.copyright}
           </p>
 
 

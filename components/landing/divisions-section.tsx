@@ -1,33 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
-const divisions = [
-  {
-    number: "01",
-    title: "Real Estate & Property Development",
-    description: "Investing in and developing high-value properties that shape the urban landscape of Abu Dhabi and the broader UAE region.",
-    stats: { value: "250+", label: "properties managed" },
-  },
-  {
-    number: "02",
-    title: "Hospitality & Hotel Management",
-    description: "Managing and owning premium hospitality assets that provide world-class experiences and drive economic value.",
-    stats: { value: "15", label: "hospitality properties" },
-  },
-  {
-    number: "03",
-    title: "Retail & Leisure",
-    description: "Developing and overseeing modern retail spaces and leisure facilities that enhance the commercial ecosystem.",
-    stats: { value: "30+", label: "retail developments" },
-  },
-  {
-    number: "04",
-    title: "Construction",
-    description: "Executing large-scale infrastructure and building projects that support regional development and growth.",
-    stats: { value: "50+", label: "completed projects" },
-  },
-];
+import { useLanguage } from "@/app/providers";
+import { translations } from "@/lib/translations";
 
 function ParticleVisualization() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -128,7 +103,35 @@ function ParticleVisualization() {
 
 export function DivisionsSection() {
   const [isVisible, setIsVisible] = useState(false);
+  const { language } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  const divisions = [
+    {
+      number: "01",
+      title: translations[language].divisions.realEstate.name,
+      description: translations[language].divisions.realEstate.description,
+      stats: { value: "250+", label: "properties managed" },
+    },
+    {
+      number: "02",
+      title: translations[language].divisions.hospitality.name,
+      description: translations[language].divisions.hospitality.description,
+      stats: { value: "15", label: "hospitality properties" },
+    },
+    {
+      number: "03",
+      title: translations[language].divisions.retail.name,
+      description: translations[language].divisions.retail.description,
+      stats: { value: "30+", label: "retail developments" },
+    },
+    {
+      number: "04",
+      title: translations[language].divisions.construction.name,
+      description: translations[language].divisions.construction.description,
+      stats: { value: "50+", label: "completed projects" },
+    },
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -155,23 +158,23 @@ export function DivisionsSection() {
             <div className="lg:col-span-7">
               <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
                 <span className="w-12 h-px bg-foreground/30" />
-                Investment Divisions
+                {translations[language].divisions.title}
               </span>
               <h2
                 className={`text-6xl md:text-7xl lg:text-[128px] font-display tracking-tight leading-[0.9] transition-all duration-1000 ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
               >
-                Diversified
+                {language === 'ar' ? translations[language].divisions.title : 'Diversified'}
                 <br />
-                <span className="text-muted-foreground">portfolio.</span>
+                <span className="text-muted-foreground">{language === 'ar' ? '' : 'portfolio.'}</span>
               </h2>
             </div>
             <div className="lg:col-span-5 lg:pb-4">
               <p className={`text-xl text-muted-foreground leading-relaxed transition-all duration-1000 delay-200 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}>
-                Our strategic investments span multiple sectors, each contributing to the economic prosperity and development of the UAE.
+                {translations[language].divisions.subtitle}
               </p>
             </div>
           </div>
