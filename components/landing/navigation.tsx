@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { useLanguage } from "@/app/providers";
 
 const navLinks = [
   { name: "Investments",   href: "/divisions/investments"  },
@@ -16,6 +17,7 @@ const navLinks = [
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { language, setLanguage } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,7 +48,7 @@ export function Navigation() {
           }`}
         >
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
+          <a href="/" className="flex items-center gap-2 group">
             <span className={`font-display tracking-tight transition-all duration-500 ${isScrolled ? "text-lg text-foreground" : "text-2xl text-white"}`}>almarina holding</span>
           </a>
 
@@ -66,14 +68,17 @@ export function Navigation() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <a href="/contact" className={`transition-all duration-500 ${isScrolled ? "text-xs text-foreground/70 hover:text-foreground" : "text-sm text-white/70 hover:text-white"}`}>
-              العربية
-            </a>
+            <button 
+              onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
+              className={`transition-all duration-500 ${isScrolled ? "text-xs text-foreground/70 hover:text-foreground" : "text-sm text-white/70 hover:text-white"}`}
+            >
+              {language === 'en' ? 'العربية' : 'English'}
+            </button>
             <Button
               size="sm"
               className={`rounded-full transition-all duration-500 ${isScrolled ? "bg-foreground hover:bg-foreground/90 text-background px-4 h-8 text-xs" : "bg-white hover:bg-white/90 text-black px-6"}`}
             >
-              Invest Now
+              {language === 'en' ? 'Invest Now' : 'استثمر الآن'}
             </Button>
           </div>
 
@@ -133,15 +138,18 @@ export function Navigation() {
             <Button 
               variant="outline" 
               className="flex-1 rounded-full h-14 text-base"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                setLanguage(language === 'en' ? 'ar' : 'en');
+                setIsMobileMenuOpen(false);
+              }}
             >
-              العربية
+              {language === 'en' ? 'العربية' : 'English'}
             </Button>
             <Button 
               className="flex-1 bg-foreground text-background rounded-full h-14 text-base"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Invest Now
+              {language === 'en' ? 'Invest Now' : 'استثمر الآن'}
             </Button>
           </div>
         </div>
