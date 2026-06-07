@@ -1,38 +1,34 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Linkedin, Instagram, Facebook, Twitter } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { useLanguage } from "@/app/providers";
+import { translations } from "@/lib/translations";
 
-const footerLinks = {
-  Property: [
-    { name: "Our Rooms", href: "#features" },
-    { name: "Amenities", href: "#how-it-works" },
-    { name: "Dining", href: "#pricing" },
-    { name: "Spa & Wellness", href: "#integrations" },
-  ],
-  Services: [
-    { name: "Concierge", href: "#developers" },
-    { name: "Room Service", href: "#" },
-    { name: "Events & Meetings", href: "#developers" },
-    { name: "Loyalty Program", href: "#" },
-  ],
-  Company: [
-    { name: "About Marina", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Careers", href: "#", badge: "Hiring" },
-    { name: "Contact", href: "#" },
-  ],
-  Legal: [
-    { name: "Privacy Policy", href: "#" },
-    { name: "Terms & Conditions", href: "#" },
-    { name: "Guest Policies", href: "#security" },
-  ],
-};
+function getFooterLinks(language: 'en' | 'ar') {
+  return {
+    [translations[language].footer.company]: [
+      { name: translations[language].about.title, href: "#intro" },
+      { name: translations[language].nav.contact, href: "/contact" },
+    ],
+    [translations[language].footer.divisions]: [
+      { name: translations[language].nav.investments, href: "/divisions/investments" },
+      { name: translations[language].nav.hospitality, href: "/divisions/hospitality" },
+      { name: translations[language].nav.retail, href: "/divisions/retail" },
+      { name: translations[language].nav.construction, href: "/divisions/construction" },
+    ],
+    [translations[language].footer.legal]: [
+      { name: translations[language].footer.privacy, href: "#" },
+      { name: translations[language].footer.terms, href: "#" },
+    ],
+  };
+}
 
 const socialLinks = [
-  { name: "Instagram", href: "#" },
-  { name: "Facebook", href: "#" },
-  { name: "LinkedIn", href: "#" },
+  { name: "LinkedIn", href: "#", icon: Linkedin },
+  { name: "Instagram", href: "#", icon: Instagram },
+  { name: "Facebook", href: "#", icon: Facebook },
+  { name: "Twitter", href: "#", icon: Twitter },
 ];
 
 function AnimatedWaveCanvas() {
@@ -92,6 +88,9 @@ function AnimatedWaveCanvas() {
 }
 
 export function FooterSection() {
+  const { language } = useLanguage();
+  const footerLinks = getFooterLinks(language);
+  
   return (
     <footer className="relative bg-black">
       {/* Panoramic banner image */}
@@ -119,21 +118,26 @@ export function FooterSection() {
               </a>
 
               <p className="text-white/50 leading-relaxed mb-8 max-w-xs text-sm">
-                Experience world-class luxury hospitality across our exclusive properties worldwide. Your perfect getaway awaits.
+                {translations[language].footer.description}
               </p>
 
               {/* Social Links */}
-              <div className="flex gap-6">
-                {socialLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className="text-sm text-white/40 hover:text-white transition-colors flex items-center gap-1 group"
-                  >
-                    {link.name}
-                    <ArrowUpRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-                  </a>
-                ))}
+              <div className="flex gap-4">
+                {socialLinks.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      aria-label={link.name}
+                      className="text-white/40 hover:text-white transition-colors p-2"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Icon className="w-5 h-5" />
+                    </a>
+                  );
+                })}
               </div>
             </div>
 
@@ -149,11 +153,6 @@ export function FooterSection() {
                         className="text-sm text-white/40 hover:text-white transition-colors inline-flex items-center gap-2"
                       >
                         {link.name}
-                        {"badge" in link && link.badge && (
-                          <span className="text-xs px-2 py-0.5 bg-white text-black rounded-full">
-                            {link.badge}
-                          </span>
-                        )}
                       </a>
                     </li>
                   ))}
@@ -166,15 +165,10 @@ export function FooterSection() {
         {/* Bottom Bar */}
         <div className="py-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-white/30">
-            &copy; 2025 Al Marina Holding. All rights reserved. | Powered by Psycode Lab's
+            {translations[language].footer.copyright}
           </p>
 
-          <div className="flex items-center gap-4 text-sm text-white/30">
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#eca8d6]" />
-              All properties operational
-            </span>
-          </div>
+
         </div>
       </div>
     </footer>

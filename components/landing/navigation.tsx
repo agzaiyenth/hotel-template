@@ -3,18 +3,26 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { useLanguage } from "@/app/providers";
+import { translations } from "@/lib/translations";
 
-const navLinks = [
-  { name: "Rooms",         href: "#features"      },
-  { name: "Amenities",     href: "#how-it-works"  },
-  { name: "Dining",        href: "#infra"          },
-  { name: "Experiences",   href: "#integrations"  },
-  { name: "About",         href: "#security"      },
-];
+function getNavLinks(language: 'en' | 'ar') {
+  const t = translations[language];
+  return [
+    { name: t.nav.investments,   href: "/divisions/investments"  },
+    { name: t.nav.hospitality,   href: "/divisions/hospitality"  },
+    { name: t.nav.retail,        href: "/divisions/retail"       },
+    { name: t.nav.construction,  href: "/divisions/construction" },
+    { name: t.nav.about,         href: "#intro"                  },
+    { name: t.nav.contact,       href: "/contact"                },
+  ];
+}
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { language, setLanguage } = useLanguage();
+  const navLinks = getNavLinks(language);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,7 +53,7 @@ export function Navigation() {
           }`}
         >
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
+          <a href="/" className="flex items-center gap-2 group">
             <span className={`font-display tracking-tight transition-all duration-500 ${isScrolled ? "text-lg text-foreground" : "text-2xl text-white"}`}>almarina holding</span>
           </a>
 
@@ -65,14 +73,17 @@ export function Navigation() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <a href="#" className={`transition-all duration-500 ${isScrolled ? "text-xs text-foreground/70 hover:text-foreground" : "text-sm text-white/70 hover:text-white"}`}>
-              My Account
-            </a>
+            <button 
+              onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
+              className={`transition-all duration-500 ${isScrolled ? "text-xs text-foreground/70 hover:text-foreground" : "text-sm text-white/70 hover:text-white"}`}
+            >
+              {language === 'en' ? 'العربية' : 'English'}
+            </button>
             <Button
               size="sm"
               className={`rounded-full transition-all duration-500 ${isScrolled ? "bg-foreground hover:bg-foreground/90 text-background px-4 h-8 text-xs" : "bg-white hover:bg-white/90 text-black px-6"}`}
             >
-              Book Now
+              {language === 'en' ? 'Invest Now' : 'استثمر الآن'}
             </Button>
           </div>
 
@@ -132,15 +143,18 @@ export function Navigation() {
             <Button 
               variant="outline" 
               className="flex-1 rounded-full h-14 text-base"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                setLanguage(language === 'en' ? 'ar' : 'en');
+                setIsMobileMenuOpen(false);
+              }}
             >
-              My Account
+              {language === 'en' ? 'العربية' : 'English'}
             </Button>
             <Button 
               className="flex-1 bg-foreground text-background rounded-full h-14 text-base"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Book Now
+              {language === 'en' ? 'Invest Now' : 'استثمر الآن'}
             </Button>
           </div>
         </div>
