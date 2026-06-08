@@ -54,7 +54,7 @@ export function Navigation() {
         >
           {/* Logo */}
           <a href="/" className="flex items-center gap-2 group">
-            <span className={`font-display tracking-tight transition-all duration-500 ${isScrolled ? "text-lg text-foreground" : "text-2xl text-white"}`}>almarina holding</span>
+            <span className={`font-display tracking-tight transition-all duration-500 ${isScrolled ? "text-lg text-foreground" : "text-2xl text-white"}`}>Almarina Holdings</span>
           </a>
 
           {/* Desktop Navigation */}
